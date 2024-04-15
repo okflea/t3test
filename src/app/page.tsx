@@ -18,11 +18,12 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const posts = await db.query.posts.findMany();
-  console.log("posts", posts);
+  // console.log("posts", posts);
 
   return (
     <main className="">
       Hello
+      <div>{JSON.stringify(posts, null, 2)}</div>
       <div className="flex flex-wrap gap-4">
         {mockImages.map((image) => (
           <div key={image.id} className="w-48">
