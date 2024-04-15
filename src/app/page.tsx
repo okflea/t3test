@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { db } from "~/server/db";
 
 const mockUrls = [
   "https://1.bp.blogspot.com/-44RJKI4Ro0U/Xqoit7Aqx9I/AAAAAAAAK9M/TBEwLlTwW6gR54DjNiGmKcPB17lJRwS2QCLcBGAsYHQ/s1600/Animal_4.png",
@@ -12,7 +13,13 @@ const mockImages = mockUrls.map((url, index) => ({
   id: index + 1,
   url,
 }));
-export default function HomePage() {
+
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const posts = await db.query.posts.findMany();
+  console.log("posts", posts);
+
   return (
     <main className="">
       Hello
